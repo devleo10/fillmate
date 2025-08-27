@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Extension - HireBot Demo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f9fafb;
+        }
+        
+        .demo-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .demo-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+        
+        .demo-subtitle {
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+        
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #fef3c7;
+            color: #92400e;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        
+        .instructions {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #0ea5e9;
+            margin: 20px 0;
+        }
+        
+        .instructions h3 {
+            margin: 0 0 12px 0;
+            color: #0c4a6e;
+        }
+        
+        .instructions ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+            color: #0c4a6e;
+        }
+        
+        .highlight {
+            background: #fbbf24;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-card">
+        <h1 class="demo-title">🎯 HireBot Extension Test</h1>
+        <p class="demo-subtitle">Test your new onboarding and normal popup features</p>
+        
+        <div class="status-indicator">
+            ⚡ Extension Ready - Click the HireBot icon in your browser toolbar
+        </div>
+        
+        <div class="instructions">
+            <h3>📋 Testing Steps</h3>
+            <ol>
+                <li><strong>First Time Users:</strong> Should see the welcome onboarding form</li>
+                <li><strong>Fill Profile:</strong> Enter your real information to complete setup</li>
+                <li><strong>Normal View:</strong> After setup, should see profile summary + quick actions</li>
+                <li><strong>Templates:</strong> Check the new generic template questions</li>
+                <li><strong>Edit Profile:</strong> Test editing profile and returning to summary view</li>
+            </ol>
+        </div>
+        
+        <div style="background: #f3f4f6; padding: 16px; border-radius: 8px; text-align: center; color: #4b5563;">
+            <strong>Expected Flow:</strong><br>
+            <span class="highlight">Onboarding</span> → 
+            <span class="highlight">Profile Setup</span> → 
+            <span class="highlight">Normal Dashboard View</span>
+        </div>
+    </div>
+</body>
+</html>

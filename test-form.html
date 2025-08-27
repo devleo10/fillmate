@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Form - Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="url"], textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        .form-row .form-group {
+            flex: 1;
+        }
+        .submit-btn {
+            background: #007cba;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background: #005a87;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .company-logo {
+            width: 60px;
+            height: 60px;
+            background: #007cba;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="header">
+            <div class="company-logo">TC</div>
+            <h1>TechCorp - Software Engineer Application</h1>
+            <p>Please fill out this form to apply for our Software Engineer position</p>
+        </div>
+
+        <form id="jobApplicationForm">
+            <!-- Personal Information Section -->
+            <h2>Personal Information</h2>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name *</label>
+                    <input type="text" id="firstName" name="first_name" placeholder="Enter your first name" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name *</label>
+                    <input type="text" id="lastName" name="last_name" placeholder="Enter your last name" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" placeholder="Street address, City, State, ZIP">
+            </div>
+
+            <!-- Professional Information Section -->
+            <h2>Professional Information</h2>
+
+            <div class="form-group">
+                <label for="linkedin">LinkedIn Profile</label>
+                <input type="url" id="linkedin" name="linkedin_url" placeholder="https://linkedin.com/in/yourprofile">
+            </div>
+
+            <div class="form-group">
+                <label for="github">GitHub Profile</label>
+                <input type="url" id="github" name="github_url" placeholder="https://github.com/yourusername">
+            </div>
+
+            <div class="form-group">
+                <label for="website">Portfolio/Website</label>
+                <input type="url" id="website" name="portfolio_url" placeholder="https://yourwebsite.com">
+            </div>
+
+            <div class="form-group">
+                <label for="experience">Years of Experience</label>
+                <input type="text" id="experience" name="experience_years" placeholder="e.g., 2+ years, Entry level">
+            </div>
+
+            <!-- Education Section -->
+            <h2>Education</h2>
+
+            <div class="form-group">
+                <label for="education">Degree</label>
+                <input type="text" id="education" name="degree" placeholder="e.g., Bachelor of Science in Computer Science">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="university">University/College</label>
+                    <input type="text" id="university" name="university" placeholder="University name">
+                </div>
+                <div class="form-group">
+                    <label for="graduationYear">Graduation Year</label>
+                    <input type="text" id="graduationYear" name="graduation_year" placeholder="YYYY">
+                </div>
+            </div>
+
+            <!-- Question Sections (for template testing) -->
+            <h2>Application Questions</h2>
+
+            <div class="form-group">
+                <label for="whyHire">Why should we hire you? *</label>
+                <textarea id="whyHire" name="why_hire" placeholder="Describe why you would be a great fit for this role..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="bestProject">Describe your best project *</label>
+                <textarea id="bestProject" name="best_project" placeholder="Tell us about a project you're particularly proud of..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="technicalSkills">What are your technical skills?</label>
+                <textarea id="technicalSkills" name="technical_skills" placeholder="List your programming languages, frameworks, tools, etc."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="careerGoals">Where do you see yourself in 5 years?</label>
+                <textarea id="careerGoals" name="career_goals" placeholder="Describe your career aspirations..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="companyInterest">Why are you interested in TechCorp?</label>
+                <textarea id="companyInterest" name="company_interest" placeholder="What attracts you to our company?"></textarea>
+            </div>
+
+            <!-- Additional Fields for Testing -->
+            <h2>Additional Information</h2>
+
+            <div class="form-group">
+                <label for="currentRole">Current Position</label>
+                <input type="text" id="currentRole" name="current_position" placeholder="Your current job title">
+            </div>
+
+            <div class="form-group">
+                <label for="availability">When can you start?</label>
+                <input type="text" id="availability" name="start_date" placeholder="e.g., Immediately, 2 weeks notice">
+            </div>
+
+            <div class="form-group">
+                <label for="additionalInfo">Additional Information</label>
+                <textarea id="additionalInfo" name="additional_info" placeholder="Any other information you'd like to share..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Prevent actual form submission for testing
+        document.getElementById('jobApplicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('This is a test form. In a real application, this would submit your data.');
+        });
+
+        // Add some visual feedback when fields are filled
+        const inputs = document.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('input', function() {
+                if (this.value.trim() !== '') {
+                    this.style.borderColor = '#28a745';
+                } else {
+                    this.style.borderColor = '#ddd';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

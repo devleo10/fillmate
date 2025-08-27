@@ -1,0 +1,141 @@
+{
+  "profiles": [
+    {
+      "id": "default",
+      "name": "Default Profile - Software Engineer",
+      "personalInfo": {
+        "firstName": "John",
+        "lastName": "Doe", 
+        "email": "john.doe@email.com",
+        "phone": "+1-555-0123",
+        "address": "123 Main Street, San Francisco, CA 94102",
+        "linkedin": "https://linkedin.com/in/johndoe",
+        "github": "https://github.com/johndoe",
+        "website": "https://johndoe.dev",
+        "education": "Bachelor of Science in Computer Science",
+        "university": "University of California, Berkeley",
+        "graduationYear": "2023",
+        "experience": "2+ years",
+        "currentRole": "Software Engineer"
+      }
+    },
+    {
+      "id": "internship",
+      "name": "Internship Profile",
+      "personalInfo": {
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "john.doe.student@university.edu",
+        "phone": "+1-555-0123",
+        "address": "456 University Ave, Berkeley, CA 94720",
+        "linkedin": "https://linkedin.com/in/johndoe-student",
+        "github": "https://github.com/johndoe",
+        "website": "https://johndoe-portfolio.netlify.app",
+        "education": "Bachelor of Science in Computer Science (Expected 2024)",
+        "university": "University of California, Berkeley",
+        "graduationYear": "2024",
+        "experience": "1 year (projects + part-time)",
+        "currentRole": "Computer Science Student"
+      }
+    }
+  ],
+  "activeProfile": "default",
+  "templates": [
+    {
+      "id": "best-project",
+      "question": "Describe your best project",
+      "answers": [
+        "Investment Platform: Built a full-stack investment tracking platform using React, Node.js, and PostgreSQL. Implemented real-time data updates, user portfolio management, and data visualization charts. The platform handles 1000+ concurrent users and processes real-time stock data from multiple APIs.",
+        "SaaS Dashboard: Developed a comprehensive analytics dashboard for small businesses using Vue.js, Express, and MongoDB. Features include custom reporting, data export, user management, and integration with popular business tools. Reduced client reporting time by 70%.",
+        "DevChains: Created a blockchain-based development workflow tool that streamlines code deployment and version control. Built with React, Solidity, and IPFS, it provides immutable deployment history and automated smart contract testing."
+      ]
+    },
+    {
+      "id": "why-hire",
+      "question": "Why should we hire you?",
+      "answers": [
+        "I bring a unique combination of technical expertise and problem-solving skills, with proven experience in full-stack development and a track record of delivering scalable solutions. My passion for clean code and user experience, combined with my ability to learn quickly and adapt to new technologies, makes me an ideal fit for your team.",
+        "My experience spans both frontend and backend development, with deep knowledge of modern frameworks and best practices. I've successfully led projects from conception to deployment, collaborated effectively with cross-functional teams, and consistently delivered high-quality solutions on time and within budget.",
+        "I excel at breaking down complex problems into manageable solutions and have a proven track record of mentoring junior developers while maintaining high code quality standards. My strong communication skills and proactive approach to learning make me valuable in fast-paced, innovative environments."
+      ]
+    },
+    {
+      "id": "technical-skills",
+      "question": "What are your technical skills?",
+      "answers": [
+        "Frontend: React, Vue.js, TypeScript, JavaScript ES6+, HTML5, CSS3, TailwindCSS, Next.js, Redux | Backend: Node.js, Express, Python, Django, REST APIs, GraphQL | Databases: PostgreSQL, MongoDB, Redis | DevOps: Docker, AWS, Git, CI/CD pipelines",
+        "Languages: JavaScript, TypeScript, Python, Java, SQL | Frameworks: React, Vue.js, Express, Django, Spring Boot | Databases: PostgreSQL, MySQL, MongoDB, Redis | Tools: Git, Docker, AWS, Figma, VS Code | Testing: Jest, Cypress, Pytest",
+        "Full-stack development with 2+ years of experience in modern JavaScript frameworks, RESTful API design, database optimization, and cloud deployment. Proficient in agile methodologies, code review processes, and test-driven development."
+      ]
+    },
+    {
+      "id": "greatest-strength",
+      "question": "What is your greatest strength?",
+      "answers": [
+        "My greatest strength is my ability to quickly understand complex systems and identify opportunities for improvement. I have a natural curiosity that drives me to dig deep into problems, and I consistently find innovative solutions that others might overlook.",
+        "I excel at clear communication and collaboration. Whether I'm explaining technical concepts to non-technical stakeholders or working with a development team, I can adapt my communication style to ensure everyone is on the same page and moving toward our shared goals.",
+        "My adaptability and continuous learning mindset. The tech industry evolves rapidly, and I thrive on staying current with new technologies and best practices. I've successfully learned and implemented new frameworks on multiple projects with tight deadlines."
+      ]
+    },
+    {
+      "id": "career-goals",
+      "question": "Where do you see yourself in 5 years?",
+      "answers": [
+        "In 5 years, I see myself as a senior software engineer or technical lead, having deep expertise in system architecture and mentoring junior developers. I want to be someone who not only writes excellent code but also helps shape technical decisions and contributes to the strategic direction of products.",
+        "I envision myself in a role where I can balance hands-on technical work with leadership responsibilities. Whether that's as a staff engineer, engineering manager, or technical architect, I want to be making significant impact on both the technical and people sides of software development.",
+        "I see myself having evolved into a domain expert in areas like distributed systems, machine learning, or whatever emerging technologies become most relevant to the industry. I want to be known for both my technical depth and my ability to solve complex business problems through technology."
+      ]
+    },
+    {
+      "id": "weakness",
+      "question": "What is your greatest weakness?",
+      "answers": [
+        "I sometimes spend too much time perfecting code when 'good enough' would suffice for the immediate needs. I've been learning to better balance perfectionism with practical deadlines by setting clear priorities and timeboxing my optimization efforts.",
+        "I can be overly critical of my own work, which sometimes slows down my initial development pace. I've been working on building more confidence in my first-pass solutions and using code reviews as opportunities to iterate rather than trying to perfect everything upfront.",
+        "I used to struggle with saying no to additional requests, which sometimes led to overcommitment. I've learned to better assess capacity and communicate realistic timelines, and I now proactively discuss trade-offs when new requests come in."
+      ]
+    },
+    {
+      "id": "challenging-situation",
+      "question": "Describe a challenging situation you overcame",
+      "answers": [
+        "During my last project, we discovered a critical performance issue just days before launch that was causing 30-second load times. I led the debugging effort, identified the root cause in our database queries, and implemented query optimization and caching strategies. We reduced load times to under 2 seconds and launched on schedule.",
+        "I inherited a legacy codebase with no documentation and the original developer had left the company. I systematically reverse-engineered the system, created comprehensive documentation, and refactored critical components. This not only solved immediate bugs but made the system maintainable for the entire team.",
+        "Our team faced a tight deadline with changing requirements from stakeholders. I facilitated discussions between the product team and engineering to prioritize features based on impact and complexity. We delivered the core functionality on time and planned the remaining features for the next sprint."
+      ]
+    },
+    {
+      "id": "learning-new-technology",
+      "question": "How do you stay updated with new technologies?",
+      "answers": [
+        "I maintain a structured approach to learning: I follow key industry blogs and newsletters, participate in developer communities like Stack Overflow and Reddit, attend virtual conferences and webinars, and dedicate time each week to experimental projects where I can try new technologies hands-on.",
+        "I believe in learning by doing, so I regularly build small projects using emerging technologies. I also follow thought leaders on Twitter, subscribe to relevant podcasts, and participate in online courses. Additionally, I try to attend local meetups and conferences when possible.",
+        "I stay current through a combination of formal and informal learning. I set aside time each week for reading technical articles, experimenting with new tools, and contributing to open-source projects. I also learn a lot from code reviews and technical discussions with my colleagues."
+      ]
+    },
+    {
+      "id": "team-collaboration",
+      "question": "How do you handle working in a team?",
+      "answers": [
+        "I believe effective teamwork starts with clear communication and mutual respect. I make sure to actively listen to others' ideas, provide constructive feedback during code reviews, and am always willing to help teammates when they're blocked. I also believe in being transparent about my own challenges and asking for help when needed.",
+        "I approach teamwork with a collaborative mindset, always looking for ways to leverage each team member's strengths. I enjoy participating in technical discussions, sharing knowledge through documentation and presentations, and working together to solve complex problems. I also value different perspectives and actively seek input from colleagues.",
+        "I'm comfortable both leading initiatives and supporting others' ideas. I focus on building trust through reliable delivery and honest communication. I also believe in celebrating team successes and learning from failures together. Regular check-ins and feedback help me ensure I'm contributing effectively to team goals."
+      ]
+    },
+    {
+      "id": "company-interest",
+      "question": "What interests you about working for this company?",
+      "answers": [
+        "I'm excited about [Company Name] because of your commitment to innovation and the impact your products have on [specific impact area]. Your engineering culture of [specific culture aspects] aligns perfectly with my values, and I'm particularly drawn to the technical challenges around [specific technical area mentioned in job posting].",
+        "What attracts me most to [Company Name] is the opportunity to work on [specific product/service] that directly impacts [target audience]. I've been following your company's growth and am impressed by [specific recent achievement or initiative]. I believe my background in [relevant area] would allow me to make meaningful contributions to your team.",
+        "I'm drawn to [Company Name]'s mission of [company mission] and the way you approach [specific business area]. The technical challenges you're solving around [specific technology/problem] are exactly the kind of complex, impactful problems I want to work on. Plus, your reputation for [specific company strength] makes this an ideal place for my career growth."
+      ]
+    }
+  ],
+  "settings": {
+    "autoFillEnabled": true,
+    "showFloatingButton": true,
+    "buttonPosition": "bottom-right",
+    "fillDelay": 100
+  }
+}
