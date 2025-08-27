@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "HireBot - Job Application Autofill",
+  "name": "FillMate - Autofill Anything",
   "version": "1.0.0",
-  "description": "Automatically fill job application forms with your personal details and templates",
+  "description": "Automatically fill any form with your personal details and templates",
   "permissions": [
     "storage",
     "activeTab",
@@ -24,6 +24,6 @@
   ],
   "action": {
     "default_popup": "popup.html",
-    "default_title": "HireBot Autofill"
+  "default_title": "FillMate Autofill"
   }
 }

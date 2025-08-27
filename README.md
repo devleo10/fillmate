@@ -1,4 +1,4 @@
-# HireBot - Chrome Extension for Job Application Autofill
+# FillMate - Chrome Extension for Job Application Autofill
 
 A powerful Chrome Extension (Manifest V3) that helps you automatically fill job application forms with your personal details and template answers.
 
@@ -27,7 +27,7 @@ A powerful Chrome Extension (Manifest V3) that helps you automatically fill job 
 ## 📁 Project Structure
 
 ```
-chrome-extension/
+FillMate/
 ├── manifest.json          # Extension manifest (V3)
 ├── background.js          # Service worker for background tasks
 ├── content.js            # Content script for page interaction
@@ -55,7 +55,7 @@ chrome-extension/
 
 3. **Pin the Extension**
    - Click the puzzle piece icon in Chrome toolbar
-   - Find "HireBot" and click the pin icon
+  - Find "FillMate" and click the pin icon
 
 ### Production Installation (Future)
 - Will be available on Chrome Web Store once published
@@ -64,7 +64,7 @@ chrome-extension/
 
 ### Setting Up Your Profile
 
-1. **Click the HireBot extension icon** in your toolbar
+1. **Click the FillMate extension icon** in your toolbar
 2. **Go to the "Profile" tab** (default)
 3. **Fill in your personal information:**
    - Name, email, phone number
@@ -92,12 +92,12 @@ chrome-extension/
 - Click it to automatically fill detected fields
 
 #### Method 2: Extension Popup
-- Click the HireBot extension icon
+- Click the FillMate extension icon
 - Click the "⚡ Autofill" button in the popup
 
 #### Method 3: Template Usage
 - Click on any text field in a form
-- Open HireBot popup → Templates tab
+- Open FillMate popup → Templates tab
 - Click on a template answer to fill the field
 
 ### Customizing Settings
@@ -252,4 +252,4 @@ For issues, questions, or feature requests:
 
 **Happy Job Hunting! 🎯**
 
-*HireBot - Making job applications faster and easier.*
+*FillMate - Making job applications faster and easier.*
