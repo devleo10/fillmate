@@ -1,5 +1,12 @@
-// Popup Script for HireBot Extension
-class HireBotPopup {
+// Modular imports
+import { getProfileTabHTML, getFullProfileFormHTML, populateProfileSummary, showEditProfile, hideEditProfile, populateProfileUI, saveProfile } from './profile.js';
+import { getTemplatesTabHTML, populateTemplates, addTemplate, deleteTemplate, addAnswerToTemplate, useTemplate } from './templates.js';
+import { getSettingsTabHTML, populateSettings, saveSettings } from './settings.js';
+import { getOnboardingHTML, showOnboarding, setupOnboardingEventListeners, completeOnboarding } from './onboarding.js';
+import { showNotification, truncateText, saveData } from './popup-utils.js';
+
+// Main FillMatePopup class (refactored to use modules)
+class FillMatePopup {
   constructor() {
     this.currentTab = 'profile';
     this.profiles = [];
@@ -7,7 +14,6 @@ class HireBotPopup {
     this.templates = [];
     this.settings = {};
     this.isFirstTime = false;
-    
     this.init();
   }
 
@@ -15,14 +21,12 @@ class HireBotPopup {
     await this.loadData();
     this.checkFirstTimeUser();
     this.setupEventListeners();
-    
     if (this.isFirstTime) {
-      this.showOnboarding();
+      showOnboarding(() => this.setupOnboardingEventListeners(), getOnboardingHTML);
     } else {
       this.showTab('profile');
     }
-    
-    this.populateUI();
+    populateProfileUI(this.activeProfile);
   }
 
   async loadData() {
@@ -43,27 +47,21 @@ class HireBotPopup {
   }
 
   checkFirstTimeUser() {
-    // Check if this is first time - user hasn't customized their profile
     if (!this.activeProfile || !this.activeProfile.personalInfo) {
       this.isFirstTime = true;
       return;
     }
-
     const personalInfo = this.activeProfile.personalInfo;
-    // Check if user still has default data (hasn't customized)
     const hasDefaultData = (
-      personalInfo.firstName === 'John' && 
-      personalInfo.lastName === 'Doe' && 
+      personalInfo.firstName === 'John' &&
+      personalInfo.lastName === 'Doe' &&
       personalInfo.email === 'john.doe@email.com'
     );
-
-    // Also check if user hasn't completed setup yet
     const hasEmptyFields = (
-      !personalInfo.firstName?.trim() || 
-      !personalInfo.lastName?.trim() || 
+      !personalInfo.firstName?.trim() ||
+      !personalInfo.lastName?.trim() ||
       !personalInfo.email?.trim()
     );
-
     this.isFirstTime = hasDefaultData || hasEmptyFields;
   }
 
@@ -74,75 +72,67 @@ class HireBotPopup {
         this.showTab(e.target.dataset.tab);
       });
     });
-
     // Profile buttons
     const saveProfileBtn = document.getElementById('saveProfileBtn');
     if (saveProfileBtn) {
       saveProfileBtn.addEventListener('click', () => {
-        this.saveProfile();
+        saveProfile(this.activeProfile, this.profiles, showNotification, saveData, hideEditProfile, (ap) => populateProfileSummary(ap, this.templates));
       });
     }
-
     const autofillBtn = document.getElementById('autofillBtn');
     if (autofillBtn) {
       autofillBtn.addEventListener('click', () => {
         this.triggerAutofill();
       });
     }
-
     const editProfileBtn = document.getElementById('editProfileBtn');
     if (editProfileBtn) {
       editProfileBtn.addEventListener('click', () => {
-        this.showEditProfile();
+        showEditProfile();
+        populateProfileUI(this.activeProfile);
       });
     }
-
     const cancelEditBtn = document.getElementById('cancelEditBtn');
     if (cancelEditBtn) {
       cancelEditBtn.addEventListener('click', () => {
-        this.hideEditProfile();
+        hideEditProfile();
       });
     }
-
     // Templates
     const addTemplateBtn = document.getElementById('addTemplateBtn');
     if (addTemplateBtn) {
       addTemplateBtn.addEventListener('click', () => {
-        this.addTemplate();
+        addTemplate(this.templates, showNotification, saveData, (t) => populateTemplates(t, showNotification, saveData));
       });
     }
-
     // Settings
     const saveSettingsBtn = document.getElementById('saveSettingsBtn');
     if (saveSettingsBtn) {
       saveSettingsBtn.addEventListener('click', () => {
-        this.saveSettings();
+        saveSettings(this.settings, showNotification, saveData);
       });
     }
   }
 
   showTab(tabName) {
-    // Remove active class from all buttons
     document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.classList.remove('active');
     });
     const activeBtn = document.querySelector(`[data-tab="${tabName}"]`);
     if (activeBtn) activeBtn.classList.add('active');
-
     this.currentTab = tabName;
-
-    // Inject tab content into .main-content
     const mainContent = document.querySelector('.main-content');
     if (!mainContent) return;
     if (tabName === 'profile') {
-      mainContent.innerHTML = this.getProfileTabHTML();
-      this.populateUI();
+      mainContent.innerHTML = getProfileTabHTML();
+      populateProfileUI(this.activeProfile);
+      populateProfileSummary(this.activeProfile, this.templates);
     } else if (tabName === 'templates') {
-      mainContent.innerHTML = this.getTemplatesTabHTML();
-      this.populateTemplates();
+      mainContent.innerHTML = getTemplatesTabHTML();
+      populateTemplates(this.templates, showNotification, saveData);
     } else if (tabName === 'settings') {
-      mainContent.innerHTML = this.getSettingsTabHTML();
-      this.populateSettings();
+      mainContent.innerHTML = getSettingsTabHTML();
+      populateSettings(this.settings);
     }
     this.setupEventListeners();
   }
@@ -257,7 +247,7 @@ class HireBotPopup {
       <div class="onboarding-container">
         <div class="welcome-header">
           <div class="welcome-icon">👋</div>
-          <h2 class="welcome-title">Welcome to HireBot!</h2>
+          <h2 class="welcome-title">Welcome to FillMate!</h2>
           <p class="welcome-subtitle">Let's set up your profile to get started with automatic job application filling.</p>
         </div>
 
@@ -739,7 +729,7 @@ class HireBotPopup {
       templateEl.innerHTML = `
         <div class="flex justify-between items-start mb-3">
           <div class="template-question">${template.question}</div>
-          <button class="btn-danger opacity-70 hover:opacity-100" onclick="hireBotPopup.deleteTemplate('${template.id}')" title="Delete template">
+          <button class="btn-danger opacity-70 hover:opacity-100" onclick="FillMatePopup.deleteTemplate('${template.id}')" title="Delete template">
             <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
             </svg>
@@ -747,12 +737,12 @@ class HireBotPopup {
         </div>
         <div class="space-y-2">
           ${template.answers.map((answer, index) => `
-            <div class="template-answer" onclick="hireBotPopup.useTemplate('${template.id}', ${index})" title="Click to use this template">
+            <div class="template-answer" onclick="FillMatePopup.useTemplate('${template.id}', ${index})" title="Click to use this template">
               ${this.truncateText(answer, 120)}
             </div>
           `).join('')}
         </div>
-        <button class="btn-secondary text-xs mt-3 px-3 py-1.5 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300" onclick="hireBotPopup.addAnswerToTemplate('${template.id}')">
+        <button class="btn-secondary text-xs mt-3 px-3 py-1.5 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300" onclick="FillMatePopup.addAnswerToTemplate('${template.id}')">
           <svg class="w-3 h-3 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"/>
           </svg>
@@ -824,11 +814,28 @@ class HireBotPopup {
         this.showNotification('No active tab found', 'error');
         return;
       }
-      await chrome.tabs.sendMessage(tab.id, { action: 'fillForm' }, (response) => {
+      chrome.tabs.sendMessage(tab.id, { action: 'fillForm' }, async (response) => {
         if (chrome.runtime.lastError) {
-          // Most likely cause: content script not injected
-          this.showNotification('Autofill failed: Please reload the page and try again. (Content script not found)', 'error');
-          console.error('Error triggering autofill:', chrome.runtime.lastError.message);
+          // Try to inject the content script, then retry
+          try {
+            await chrome.scripting.executeScript({
+              target: { tabId: tab.id },
+              files: ['content.js']
+            });
+            // Retry sending the message
+            chrome.tabs.sendMessage(tab.id, { action: 'fillForm' }, (retryResponse) => {
+              if (chrome.runtime.lastError) {
+                this.showNotification('Autofill failed: Please reload the page and try again. (Content script not found)', 'error');
+                console.error('Error triggering autofill:', chrome.runtime.lastError.message);
+              } else {
+                this.showNotification('Autofill triggered!');
+                window.close();
+              }
+            });
+          } catch (injectErr) {
+            this.showNotification('Autofill failed: Unable to inject content script. Try reloading the page.', 'error');
+            console.error('Error injecting content script:', injectErr);
+          }
         } else {
           this.showNotification('Autofill triggered!');
           window.close();
@@ -974,5 +981,5 @@ class HireBotPopup {
 
 // Initialize popup when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-  window.hireBotPopup = new HireBotPopup();
+  window.FillMatePopup = new FillMatePopup();
 });

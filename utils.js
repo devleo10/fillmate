@@ -1,7 +1,7 @@
-// Development Utilities for HireBot Extension
+// Development Utilities for FillMate Extension
 // This file contains helper functions and future enhancement placeholders
 
-class HireBotUtils {
+class FillMateUtils {
   /**
    * AI Integration Placeholder
    * Future function to generate role-specific answers using AI
@@ -317,10 +317,10 @@ class HireBotUtils {
 
 // Make utilities available globally
 if (typeof window !== 'undefined') {
-  window.HireBotUtils = HireBotUtils;
+  window.FillMateUtils = FillMateUtils;
 }
 
 // Export for Node.js environments (testing)
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = HireBotUtils;
+  module.exports = FillMateUtils;
 }

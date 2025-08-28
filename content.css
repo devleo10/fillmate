@@ -1,6 +1,6 @@
-/* HireBot Content Script Styles */
+/* FillMate Content Script Styles */
 
-.hirebot-floating-button {
+.FillMate-floating-button {
   position: fixed;
   z-index: 10000;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -17,44 +17,44 @@
   user-select: none;
 }
 
-.hirebot-floating-button:hover {
+.FillMate-floating-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
-.hirebot-floating-button:active {
+.FillMate-floating-button:active {
   transform: translateY(0);
 }
 
 /* Positioning variants */
-.hirebot-bottom-right {
+.FillMate-bottom-right {
   bottom: 20px;
   right: 20px;
 }
 
-.hirebot-bottom-left {
+.FillMate-bottom-left {
   bottom: 20px;
   left: 20px;
 }
 
-.hirebot-top-right {
+.FillMate-top-right {
   top: 20px;
   right: 20px;
 }
 
-.hirebot-top-left {
+.FillMate-top-left {
   top: 20px;
   left: 20px;
 }
 
-.hirebot-button-content {
+.FillMate-button-content {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 /* Notification styles */
-.hirebot-notification {
+.FillMate-notification {
   position: fixed;
   top: 20px;
   right: 20px;
@@ -82,7 +82,7 @@
 }
 
 /* Filled field animation */
-.hirebot-field-filled {
+.FillMate-field-filled {
   animation: fieldFillPulse 0.6s ease-out;
 }
 

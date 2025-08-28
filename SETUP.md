@@ -1,4 +1,4 @@
-# HireBot Chrome Extension - Quick Setup
+# FillMate Chrome Extension - Quick Setup
 
 ## Installation Steps
 
@@ -27,7 +27,7 @@
 
 4. **Pin Extension**
    - Click the puzzle piece icon (🧩) in the Chrome toolbar
-   - Find "HireBot - Job Application Autofill"
+   - Find "FillMate - Job Application Autofill"
    - Click the pin icon to pin it to your toolbar
 
 ### 3. First-Time Setup & Pre-filled Data
@@ -40,7 +40,7 @@ The extension comes with realistic example data to help you get started:
 
 All example data is fully editable - simply update with your actual information!
 
-1. **Click the HireBot icon** in your toolbar
+1. **Click the FillMate icon** in your toolbar
 2. **Review & update** the pre-filled profile information in the Profile tab
 3. **Customize template answers** in the Templates tab (or use the examples)
 4. **Configure settings** as needed in the Settings tab
@@ -75,7 +75,7 @@ If you want to modify the extension:
 
 1. **Make changes** to any of the files
 2. **Go to** `chrome://extensions/`
-3. **Click the refresh icon** on the HireBot extension card
+3. **Click the refresh icon** on the FillMate extension card
 4. **Test your changes** on any webpage
 
 ### 7. Backup Your Data

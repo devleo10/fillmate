@@ -1,4 +1,4 @@
-// Background Service Worker for HireBot Extension
+// Background Service Worker for FillMate Extension
 class BackgroundService {
   constructor() {
     this.initializeExtension();
@@ -103,9 +103,9 @@ class BackgroundService {
         });
       }
 
-      console.log('HireBot: Default data initialized');
+      console.log('FillMate: Default data initialized');
     } catch (error) {
-      console.error('HireBot: Error setting default data:', error);
+      console.error('FillMate: Error setting default data:', error);
     }
   }
 
@@ -142,7 +142,7 @@ class BackgroundService {
           sendResponse({ success: false, error: 'Unknown action' });
       }
     } catch (error) {
-      console.error('HireBot: Error handling message:', error);
+      console.error('FillMate: Error handling message:', error);
       sendResponse({ success: false, error: error.message });
     }
   }
@@ -152,13 +152,13 @@ class BackgroundService {
       await chrome.scripting.executeScript({
         target: { tabId },
         func: () => {
-          if (window.hireBotAutofill) {
-            window.hireBotAutofill.fillForm();
+          if (window.FillMateAutofill) {
+            window.FillMateAutofill.fillForm();
           }
         }
       });
     } catch (error) {
-      console.error('HireBot: Error triggering autofill:', error);
+      console.error('FillMate: Error triggering autofill:', error);
     }
   }
 }
