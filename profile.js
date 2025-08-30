@@ -112,50 +112,34 @@ export function populateProfileSummary(activeProfile, templates) {
   if (!summaryContainer || !activeProfile || !activeProfile.personalInfo) return;
   const info = activeProfile.personalInfo;
   summaryContainer.innerHTML = `
-    <div class="profile-card">
-      <div class="profile-header">
-        <div class="profile-avatar">
-          ${(info.firstName?.[0] || 'U').toUpperCase()}${(info.lastName?.[0] || '').toUpperCase()}
-        </div>
-        <div class="profile-details">
-          <h3 class="profile-name">${info.firstName || 'User'} ${info.lastName || ''}</h3>
-          <p class="profile-role">${info.experience || 'Professional'}</p>
-        </div>
+    <div class="profile-details-card">
+      <div class="profile-row" style="margin-bottom: 8px; align-items: flex-end;">
+        <span class="profile-label">${info.location || 'CA'}</span>
+        <span class="profile-name">${info.firstName || 'User'} ${info.lastName || ''}</span>
       </div>
-      <div class="profile-info">
-        <div class="info-item">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-          </svg>
-          <span>${info.email || 'No email set'}</span>
-        </div>
-        ${info.phone ? `
-        <div class="info-item">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-          </svg>
-          <span>${info.phone}</span>
-        </div>
-        ` : ''}
-        ${info.linkedin ? `
-        <div class="info-item">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd"/>
-          </svg>
-          <span>LinkedIn Profile</span>
-        </div>
-        ` : ''}
+      <div class="profile-row">
+        <span class="profile-label">${info.experience || '1+ years'}</span>
       </div>
-      <div class="profile-stats">
-        <div class="stat">
-          <span class="stat-number">${templates?.length || 0}</span>
-          <span class="stat-label">Templates</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number">Ready</span>
-          <span class="stat-label">Status</span>
-        </div>
+      <div class="profile-row">
+        <span class="profile-icon">✉️</span>
+        <span>${info.email || 'No email set'}</span>
+      </div>
+      ${info.phone ? `
+      <div class="profile-row">
+        <span class="profile-icon">📞</span>
+        <span>${info.phone}</span>
+      </div>
+      ` : ''}
+      ${info.linkedin ? `
+      <div class="profile-row">
+        <span class="profile-icon">🔗</span>
+        <a href="${info.linkedin}" class="profile-link" target="_blank">LinkedIn Profile</a>
+      </div>
+      ` : ''}
+      <div class="profile-row">
+        <span>${templates?.length || 0} Templates</span>
+      <div class="profile-row">
+        <span>Ready Status</span>
       </div>
     </div>
   `;

@@ -4,7 +4,7 @@ export function getTemplatesTabHTML() {
     <div class="space-y-4">
       <div class="info-banner">
         <div class="flex items-start gap-3">
-          <div class="info-icon">💡</div>
+          <div class="info-icon">�</div>
           <div>
             <h4 class="info-title">Template Answers</h4>
             <p class="info-text">Click a question to show answers. Click an answer to use it in a focused text field.</p>
@@ -53,29 +53,58 @@ export function populateTemplates(templates, showNotification, saveData) {
   templates.forEach(template => {
     const templateEl = document.createElement('div');
     templateEl.className = 'template-item';
+    // Build the question/answers UI without inline event handlers
     templateEl.innerHTML = `
-      <div class="flex justify-between items-start mb-1">
+      <div class="template-header">
         <button class="template-question-dropdown" data-template-id="${template.id}">
           <span class="template-question-text">${template.question}</span>
-          <span class="dropdown-arrow">▼</span>
+          <span class="dropdown-arrow">
+            <svg class="w-4 h-4 transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+          </span>
         </button>
-        <button class="btn-danger opacity-70 hover:opacity-100" onclick="window.FillMatePopup.deleteTemplate('${template.id}')" title="Delete template">
-          <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
-          </svg>
-        </button>
+        <div class="template-actions">
+          <button class="edit-template-btn" data-template-id="${template.id}" title="Edit template">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
+            </svg>
+          </button>
+          <button class="delete-template-btn" data-template-id="${template.id}" title="Delete template">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" clip-rule="evenodd"/>
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+        </div>
       </div>
       <div class="template-answers-dropdown" id="answers-${template.id}" style="display:none;">
-        ${template.answers.map((answer, index) => `
-          <div class="template-answer" onclick="window.FillMatePopup.useTemplate('${template.id}', ${index})" title="Click to use this template">
-            ${answer.length > 120 ? answer.substring(0, 120) + '...' : answer}
-          </div>
-        `).join('')}
-        <button class="btn-secondary text-xs mt-3 px-3 py-1.5 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300" onclick="window.FillMatePopup.addAnswerToTemplate('${template.id}')">
-          <svg class="w-3 h-3 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
+        <div class="answers-container">
+          ${template.answers.map((answer, index) => `
+            <div class="template-answer-item" data-template-id="${template.id}" data-answer-index="${index}">
+              <div class="answer-content" title="Click to use this template">
+                ${answer.length > 150 ? answer.substring(0, 150) + '...' : answer}
+              </div>
+              <div class="answer-actions">
+                <button class="edit-answer-btn" data-template-id="${template.id}" data-answer-index="${index}" title="Edit answer">
+                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
+                  </svg>
+                </button>
+                <button class="delete-answer-btn" data-template-id="${template.id}" data-answer-index="${index}" title="Delete answer">
+                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <button class="add-answer-btn" data-template-id="${template.id}">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"/>
           </svg>
-          Add Answer
+          Add New Answer
         </button>
       </div>
     `;
@@ -87,8 +116,81 @@ export function populateTemplates(templates, showNotification, saveData) {
     btn.addEventListener('click', (e) => {
       const id = btn.getAttribute('data-template-id');
       const answersDiv = document.getElementById(`answers-${id}`);
+      const arrow = btn.querySelector('.dropdown-arrow svg');
       if (answersDiv) {
-        answersDiv.style.display = answersDiv.style.display === 'none' ? 'block' : 'none';
+        const isVisible = answersDiv.style.display !== 'none';
+        answersDiv.style.display = isVisible ? 'none' : 'block';
+        if (arrow) {
+          arrow.style.transform = isVisible ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+      }
+    });
+  });
+
+  // Add answer content click logic (for using templates)
+  container.querySelectorAll('.answer-content').forEach(answerDiv => {
+    answerDiv.addEventListener('click', (e) => {
+      const parent = answerDiv.closest('.template-answer-item');
+      const templateId = parent.getAttribute('data-template-id');
+      const answerIndex = parent.getAttribute('data-answer-index');
+      if (window.FillMatePopup && typeof window.FillMatePopup.useTemplate === 'function') {
+        window.FillMatePopup.useTemplate(templateId, Number(answerIndex));
+      }
+    });
+  });
+
+  // Add edit template button logic
+  container.querySelectorAll('.edit-template-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const templateId = btn.getAttribute('data-template-id');
+      if (window.FillMatePopup && typeof window.FillMatePopup.editTemplate === 'function') {
+        window.FillMatePopup.editTemplate(templateId);
+      }
+    });
+  });
+
+  // Add delete template button logic
+  container.querySelectorAll('.delete-template-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const templateId = btn.getAttribute('data-template-id');
+      if (window.FillMatePopup && typeof window.FillMatePopup.deleteTemplate === 'function') {
+        window.FillMatePopup.deleteTemplate(templateId);
+      }
+    });
+  });
+
+  // Add edit answer button logic
+  container.querySelectorAll('.edit-answer-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const templateId = btn.getAttribute('data-template-id');
+      const answerIndex = btn.getAttribute('data-answer-index');
+      if (window.FillMatePopup && typeof window.FillMatePopup.editAnswer === 'function') {
+        window.FillMatePopup.editAnswer(templateId, Number(answerIndex));
+      }
+    });
+  });
+
+  // Add delete answer button logic
+  container.querySelectorAll('.delete-answer-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const templateId = btn.getAttribute('data-template-id');
+      const answerIndex = btn.getAttribute('data-answer-index');
+      if (window.FillMatePopup && typeof window.FillMatePopup.deleteAnswer === 'function') {
+        window.FillMatePopup.deleteAnswer(templateId, Number(answerIndex));
+      }
+    });
+  });
+
+  // Add answer button logic
+  container.querySelectorAll('.add-answer-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const templateId = btn.getAttribute('data-template-id');
+      if (window.FillMatePopup && typeof window.FillMatePopup.addAnswerToTemplate === 'function') {
+        window.FillMatePopup.addAnswerToTemplate(templateId);
       }
     });
   });
